@@ -67,3 +67,18 @@ SFI has its own repository, Linear project and Notion project home. It is indepe
 - Learning Engine
 
 See the [Notion project home](https://app.notion.com/p/41af741d6511818ea3a5f5af79beef13?pvs=204) for the project knowledge hub. Track implementation work in the [SFI Linear project](https://linear.app/getpsi/project/software-factory-intelligence-5bd62a7fb5db).
+
+
+## SFI-04a/04b reference implementation
+
+The `src/sfi_ingestion` package provides a SQLite-backed reference ingestion gateway. It demonstrates schema validation, authenticated connection binding, tenant/workspace/source isolation, inline payload SHA-256 and size verification, durable transactional acceptance, idempotent redelivery, cursor advancement only after commit, bounded retry, quarantine and explicit replay. It is an executable reference implementation, not a production deployment recommendation; production storage, authentication adapters, rate limiting, authorization for replay and operational scheduling remain deployment integrations.
+
+Run locally:
+
+```bash
+python -m pip install -r requirements-dev.txt
+PYTHONPATH=src python -m unittest discover -s tests -v
+python scripts/validate_sfi04.py
+```
+
+CI: [SFI-04 ingestion gateway workflow](.github/workflows/sfi04-ingestion.yml).
