@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "engineering-evidence",
+  "evidenceId": "7f1c4d0a-6e7b-4c8b-9a10-123456789001",
+  "tenantId": "tenant-demo",
+  "workspaceId": "workspace-payments",
+  "evidenceDomain": "intent",
+  "evidenceType": "requirement.acceptance-criteria",
+  "captureMode": "document",
+  "source": {
+    "system": "linear",
+    "instanceId": "linear-cloud-demo",
+    "objectType": "issue",
+    "objectId": "PAY-42",
+    "objectVersion": "updatedAt:2026-11-15T10:00:00Z",
+    "url": "https://linear.example/issue/PAY-42"
+  },
+  "temporal": {
+    "occurredAt": "2026-11-15T09:50:00Z",
+    "observedAt": "2026-11-15T10:01:00Z",
+    "ingestedAt": "2026-11-15T10:01:03Z",
+    "sourceUpdatedAt": "2026-11-15T10:00:00Z"
+  },
+  "provenance": {
+    "origin": "source-observed",
+    "trust": "source-authenticated",
+    "producer": "sfi-connector-linear",
+    "connectorId": "linear",
+    "connectorVersion": "1.2.0",
+    "mappingVersion": "linear-issue-v3",
+    "actor": {
+      "type": "human",
+      "id": "user-demo-17"
+    },
+    "capturedAt": "2026-11-15T10:01:00Z"
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "archiveRef": "sfi-archive://tenant-demo/objects/abc123",
+    "sizeBytes": 2048,
+    "redacted": true
+  },
+  "content": {
+    "title": "Support idempotent payment submission",
+    "acceptanceCriteria": [
+      "Duplicate requests do not create duplicate charges"
+    ],
+    "status": "In Progress"
+  },
+  "governance": {
+    "ownerTenantId": "tenant-demo",
+    "classification": "confidential",
+    "rights": {
+      "status": "cleared",
+      "basis": "tenant-authorized-source-connection"
+    },
+    "permittedPurposes": [
+      "engineering-operations",
+      "analytics",
+      "evaluation"
+    ],
+    "sharingScope": "tenant-only",
+    "retention": {
+      "policyId": "tenant-default-365d"
+    }
+  },
+  "idempotencyKey": "linear:linear-cloud-demo:issue:PAY-42:updatedAt:2026-11-15T10:00:00Z"
+}
