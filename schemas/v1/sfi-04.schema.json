@@ -1,0 +1,463 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:sfi:schema:v1:sfi-04",
+  "title": "SFI-04 Connector Profile and Delivery Envelope Contracts",
+  "description": "Structural schemas for SFI connector profiles and ingestion delivery envelopes. Authentication verification, tenant binding, idempotency and policy checks are semantic/runtime stages.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/connectorProfile"
+    },
+    {
+      "$ref": "#/$defs/deliveryEnvelope"
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha-256"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system",
+        "instanceId",
+        "objectType",
+        "objectId"
+      ],
+      "properties": {
+        "system": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "instanceId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "objectType": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "objectId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "objectVersion": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "eventId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "connectorProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contractVersion",
+        "recordType",
+        "profileId",
+        "profileVersion",
+        "sourceSystem",
+        "supportedModes",
+        "supportedApiVersions",
+        "requiredScopes",
+        "optionalScopes",
+        "idempotency",
+        "payloadLimits",
+        "mappingProfile",
+        "knownGaps"
+      ],
+      "properties": {
+        "contractVersion": {
+          "const": "1.0.0"
+        },
+        "recordType": {
+          "const": "connector-profile"
+        },
+        "profileId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "profileVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "sourceSystem": {
+          "enum": [
+            "github",
+            "linear",
+            "notion",
+            "agent",
+            "other"
+          ]
+        },
+        "supportedModes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "webhook",
+              "polling",
+              "snapshot",
+              "agent-instrumentation"
+            ]
+          }
+        },
+        "supportedApiVersions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "requiredScopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "optionalScopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "webhookVerification": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "method": {
+              "enum": [
+                "hmac-signature",
+                "signed-token",
+                "mutual-tls",
+                "source-authenticated-api",
+                "not-applicable"
+              ]
+            },
+            "replayWindowSeconds": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "cursorStrategy": {
+          "enum": [
+            "opaque-cursor",
+            "modified-since",
+            "page-token",
+            "snapshot-checkpoint",
+            "none"
+          ]
+        },
+        "idempotency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy",
+            "scope"
+          ],
+          "properties": {
+            "strategy": {
+              "enum": [
+                "source-event-id",
+                "source-object-revision",
+                "deterministic-fingerprint"
+              ]
+            },
+            "scope": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "fingerprintProfile": {
+              "$ref": "#/$defs/nonEmpty"
+            }
+          }
+        },
+        "payloadLimits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maxBytes",
+            "overflowPolicy",
+            "allowedMediaTypes"
+          ],
+          "properties": {
+            "maxBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "overflowPolicy": {
+              "enum": [
+                "reject",
+                "archive-reference-only",
+                "redact-then-accept"
+              ]
+            },
+            "allowedMediaTypes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        },
+        "mappingProfile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mappingId",
+            "mappingVersion"
+          ],
+          "properties": {
+            "mappingId": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "mappingVersion": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            }
+          }
+        },
+        "knownGaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "retentionPolicyRef": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "deliveryEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "envelopeVersion",
+        "recordType",
+        "deliveryId",
+        "connectionId",
+        "tenantId",
+        "workspaceId",
+        "source",
+        "delivery",
+        "payload",
+        "authentication",
+        "connector"
+      ],
+      "properties": {
+        "envelopeVersion": {
+          "const": "1.0.0"
+        },
+        "recordType": {
+          "const": "delivery-envelope"
+        },
+        "deliveryId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "connectionId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "tenantId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "workspaceId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "delivery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "receivedAt",
+            "attempt"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "webhook",
+                "polling",
+                "snapshot",
+                "agent-instrumentation"
+              ]
+            },
+            "receivedAt": {
+              "$ref": "#/$defs/dateTime"
+            },
+            "attempt": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceCursor": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "partition": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "replayOfDeliveryId": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "sourceOccurredAt": {
+              "$ref": "#/$defs/dateTime"
+            }
+          }
+        },
+        "payload": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mediaType",
+                "sizeBytes",
+                "digest",
+                "inline"
+              ],
+              "properties": {
+                "mediaType": {
+                  "$ref": "#/$defs/nonEmpty"
+                },
+                "sizeBytes": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "digest": {
+                  "$ref": "#/$defs/digest"
+                },
+                "inline": {
+                  "type": "object"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mediaType",
+                "sizeBytes",
+                "digest",
+                "archiveRef"
+              ],
+              "properties": {
+                "mediaType": {
+                  "$ref": "#/$defs/nonEmpty"
+                },
+                "sizeBytes": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "digest": {
+                  "$ref": "#/$defs/digest"
+                },
+                "archiveRef": {
+                  "$ref": "#/$defs/nonEmpty"
+                },
+                "redacted": {
+                  "type": "boolean"
+                }
+              }
+            }
+          ]
+        },
+        "authentication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "verified",
+            "verifiedAt"
+          ],
+          "properties": {
+            "method": {
+              "enum": [
+                "hmac-signature",
+                "signed-token",
+                "mutual-tls",
+                "source-authenticated-api",
+                "agent-service-identity"
+              ]
+            },
+            "verified": {
+              "const": true
+            },
+            "verifiedAt": {
+              "$ref": "#/$defs/dateTime"
+            },
+            "keyVersionRef": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "principalRef": {
+              "$ref": "#/$defs/nonEmpty"
+            }
+          }
+        },
+        "connector": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "connectorId",
+            "connectorVersion",
+            "profileId",
+            "profileVersion",
+            "mappingVersion"
+          ],
+          "properties": {
+            "connectorId": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "connectorVersion": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "profileId": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "profileVersion": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "mappingVersion": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
