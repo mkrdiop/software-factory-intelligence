@@ -1,0 +1,47 @@
+{
+  "envelopeVersion": "1.0.0",
+  "recordType": "delivery-envelope",
+  "deliveryId": "del-01",
+  "connectionId": "conn-tenant-a",
+  "tenantId": "tenant-a",
+  "workspaceId": "workspace-a",
+  "source": {
+    "system": "github",
+    "instanceId": "github-com-installation-123",
+    "objectType": "pull_request",
+    "objectId": "pr-42",
+    "objectVersion": "sha-abc",
+    "eventId": "evt-001",
+    "url": "https://github.com/acme/payments/pull/42"
+  },
+  "delivery": {
+    "mode": "webhook",
+    "receivedAt": "2026-11-16T08:30:00Z",
+    "attempt": 1
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "sizeBytes": 128,
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "inline": {
+      "action": "opened",
+      "number": 42
+    }
+  },
+  "authentication": {
+    "method": "hmac-signature",
+    "verified": true,
+    "verifiedAt": "2026-11-16T08:30:00Z",
+    "keyVersionRef": "secret-version-7"
+  },
+  "connector": {
+    "connectorId": "github-adapter",
+    "connectorVersion": "1.2.0",
+    "profileId": "github-core",
+    "profileVersion": "1.0.0",
+    "mappingVersion": "1.0.0"
+  }
+}
