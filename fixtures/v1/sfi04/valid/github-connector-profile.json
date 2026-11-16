@@ -1,0 +1,53 @@
+{
+  "contractVersion": "1.0.0",
+  "recordType": "connector-profile",
+  "profileId": "github-core",
+  "profileVersion": "1.0.0",
+  "sourceSystem": "github",
+  "supportedModes": [
+    "webhook",
+    "polling",
+    "snapshot"
+  ],
+  "supportedApiVersions": [
+    "GitHub REST v3",
+    "GitHub Webhooks"
+  ],
+  "requiredScopes": [
+    "metadata:read"
+  ],
+  "optionalScopes": [
+    "pull_requests:read",
+    "issues:read",
+    "checks:read"
+  ],
+  "webhookVerification": {
+    "method": "hmac-signature",
+    "replayWindowSeconds": 300,
+    "notes": "Verify signature against exact raw request bytes."
+  },
+  "cursorStrategy": "opaque-cursor",
+  "idempotency": {
+    "strategy": "source-event-id",
+    "scope": [
+      "connectionId",
+      "source.instanceId",
+      "source.eventId"
+    ]
+  },
+  "payloadLimits": {
+    "maxBytes": 1048576,
+    "overflowPolicy": "archive-reference-only",
+    "allowedMediaTypes": [
+      "application/json"
+    ]
+  },
+  "mappingProfile": {
+    "mappingId": "github-core-map",
+    "mappingVersion": "1.0.0"
+  },
+  "knownGaps": [
+    "CI log capture is not enabled in the initial profile."
+  ],
+  "retentionPolicyRef": "retention-standard"
+}
