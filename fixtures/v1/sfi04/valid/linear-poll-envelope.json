@@ -1,0 +1,43 @@
+{
+  "envelopeVersion": "1.0.0",
+  "recordType": "delivery-envelope",
+  "deliveryId": "del-02",
+  "connectionId": "conn-tenant-b",
+  "tenantId": "tenant-b",
+  "workspaceId": "workspace-b",
+  "source": {
+    "system": "linear",
+    "instanceId": "linear-workspace-99",
+    "objectType": "issue",
+    "objectId": "uuid-issue-42",
+    "objectVersion": "updated-2026-11-16T08:00:00Z"
+  },
+  "delivery": {
+    "mode": "polling",
+    "receivedAt": "2026-11-16T08:30:00Z",
+    "attempt": 1,
+    "sourceCursor": "opaque-cursor-next"
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "sizeBytes": 90,
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "archiveRef": "archive://tenant-b/del-02"
+  },
+  "authentication": {
+    "method": "source-authenticated-api",
+    "verified": true,
+    "verifiedAt": "2026-11-16T08:30:00Z",
+    "principalRef": "linear-connection-principal"
+  },
+  "connector": {
+    "connectorId": "linear-adapter",
+    "connectorVersion": "1.0.0",
+    "profileId": "linear-core",
+    "profileVersion": "1.0.0",
+    "mappingVersion": "1.0.0"
+  }
+}
