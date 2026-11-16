@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "engineering-evidence",
+  "evidenceId": "7f1c4d0a-6e7b-4c8b-9a10-123456789002",
+  "tenantId": "tenant-demo",
+  "workspaceId": "workspace-payments",
+  "evidenceDomain": "reasoning",
+  "evidenceType": "architecture.alternative-analysis",
+  "captureMode": "derived-assertion",
+  "source": {
+    "system": "sfi",
+    "instanceId": "sfi-prod",
+    "objectType": "analysis",
+    "objectId": "analysis-2026-0042"
+  },
+  "temporal": {
+    "observedAt": "2026-11-15T12:00:00Z",
+    "ingestedAt": "2026-11-15T12:00:02Z"
+  },
+  "provenance": {
+    "origin": "model-generated",
+    "trust": "unverified",
+    "producer": "architecture-review-agent",
+    "mappingVersion": "sfi-analysis-v1",
+    "actor": {
+      "type": "agent",
+      "id": "agent-architecture-review"
+    },
+    "capturedAt": "2026-11-15T12:00:00Z",
+    "derivation": {
+      "modelId": "example-model",
+      "modelVersion": "2026-10",
+      "promptTemplate": "arch-review-v2"
+    }
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "archiveRef": "sfi-archive://tenant-demo/objects/def456",
+    "sizeBytes": 1024,
+    "redacted": true
+  },
+  "content": {
+    "claim": "A transactional outbox may improve delivery reliability",
+    "confidenceLabel": "hypothesis",
+    "supportingEvidence": [
+      "PAY-42"
+    ]
+  },
+  "governance": {
+    "ownerTenantId": "tenant-demo",
+    "classification": "confidential",
+    "rights": {
+      "status": "cleared",
+      "basis": "tenant-authorized-agent-capture"
+    },
+    "permittedPurposes": [
+      "engineering-operations",
+      "evaluation"
+    ],
+    "sharingScope": "tenant-only",
+    "retention": {
+      "policyId": "tenant-default-365d"
+    }
+  },
+  "idempotencyKey": "sfi:analysis:analysis-2026-0042:v1"
+}
