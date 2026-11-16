@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "evidence-relationship",
+  "relationshipId": "8f1c4d0a-6e7b-4c8b-9a10-123456789011",
+  "tenantId": "tenant-demo",
+  "workspaceId": "workspace-payments",
+  "subject": {
+    "kind": "evidence",
+    "id": "7f1c4d0a-6e7b-4c8b-9a10-123456789001"
+  },
+  "predicate": "supports",
+  "target": {
+    "kind": "evidence",
+    "id": "7f1c4d0a-6e7b-4c8b-9a10-123456789003"
+  },
+  "status": "candidate",
+  "assertion": {
+    "method": "model",
+    "producer": "linker",
+    "confidence": 1.7
+  },
+  "evidenceBasis": [
+    "7f1c4d0a-6e7b-4c8b-9a10-123456789001"
+  ],
+  "assertedAt": "2026-11-15T14:00:00Z"
+}
