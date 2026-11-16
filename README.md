@@ -8,6 +8,10 @@ Software Factory Intelligence (SFI) is an independent engineering project buildi
 - **Notion:** [Software Factory Intelligence — Project Home](https://app.notion.com/p/41af741d6511818ea3a5f5af79beef13?pvs=204)
 - **GitHub:** [mkrdiop/software-factory-intelligence](https://github.com/mkrdiop/software-factory-intelligence)
 
+## Product baseline
+
+- **SFI-01 — Product Charter and Scope Baseline:** [Notion document](https://app.notion.com/p/41af741d6511810bb463efce5c2bcfa0?pvs=204) · [Markdown source](docs/product/SFI-01-product-charter-and-scope-baseline.md) · [Linear issue](https://linear.app/getpsi/issue/SFI-1/sfi-01-product-charter-and-scope-baseline)
+
 ## Mission
 
 Build an intelligence layer that captures, structures, evaluates and learns from the complete software engineering lifecycle, helping software factories design, implement, validate, document and continuously improve enterprise software.
@@ -50,4 +54,4 @@ SFI has its own repository, Linear project and Notion project home. It is indepe
 - Intelligence Engine
 - Learning Engine
 
-See the [Notion project home](https://app.notion.com/p/41af741d6511818ea3a5f5af79beef13?pvs=204) for the project charter, data strategy and architecture direction. Track implementation work in the [SFI Linear project](https://linear.app/getpsi/project/software-factory-intelligence-5bd62a7fb5db).
+See the [Notion project home](https://app.notion.com/p/41af741d6511818ea3a5f5af79beef13?pvs=204) for the project knowledge hub. Track implementation work in the [SFI Linear project](https://linear.app/getpsi/project/software-factory-intelligence-5bd62a7fb5db).
