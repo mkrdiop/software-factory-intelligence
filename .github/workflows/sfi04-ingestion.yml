@@ -1,0 +1,39 @@
+name: SFI-04 ingestion gateway tests
+
+on:
+  push:
+    paths:
+      - "src/sfi_ingestion/**"
+      - "tests/test_sfi04_gateway.py"
+      - "schemas/v1/sfi-04.schema.json"
+      - "requirements-dev.txt"
+      - ".github/workflows/sfi04-ingestion.yml"
+  pull_request:
+    paths:
+      - "src/sfi_ingestion/**"
+      - "tests/test_sfi04_gateway.py"
+      - "schemas/v1/sfi-04.schema.json"
+      - "requirements-dev.txt"
+      - ".github/workflows/sfi04-ingestion.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ingestion-gateway:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run gateway and contract tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Run SFI-04 fixture conformance
+        run: python scripts/validate_sfi04.py
