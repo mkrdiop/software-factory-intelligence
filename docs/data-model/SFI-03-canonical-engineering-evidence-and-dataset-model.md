@@ -47,7 +47,7 @@ Sections 2–13 define normative semantics and acceptance obligations. Examples 
 
 ### 3.1 Schema identifiers
 
-The initial schema bundle uses the provisional, non-dereferencing identifier family `urn:sfi:schema:v1:<record-family>`. These identifiers are stable within this proposal and MUST be treated as opaque schema identifiers. A future schema-registry ADR may introduce resolvable HTTPS distribution URLs without changing the record semantics. No client may dereference a schema identifier merely because it is a URI.
+The initial schema bundle uses the provisional, non-dereferencing bundle identifier `urn:sfi:schema:v1:sfi-03`. It MUST be treated as an opaque schema identifier. Record families are discriminated by their `recordType`; family-specific schema identifiers may be introduced by a later registry ADR. A future schema-registry ADR may introduce resolvable HTTPS distribution URLs without changing record semantics. No client may dereference a schema identifier merely because it is a URI.
 
 The schema bundle declares JSON Schema Draft 2020-12. Schema version, record schema version, source object version, dataset definition version and dataset release version are separate version dimensions.
 
@@ -228,7 +228,7 @@ It MUST include:
 
 The release manifest MUST identify every included evidence item or an immutable partition/index whose contents are themselves digest-bound. It MUST NOT rely solely on a mutable query to reconstruct membership. Dataset release artifacts MUST NOT contain raw source payloads by default; payload inclusion requires explicit policy and rights checks.
 
-Release status is `building`, `validated`, `approved`, `published`, `withdrawn` or `failed`. A published release is immutable. Corrections produce a new release; withdrawal blocks future distribution/use according to policy but does not silently mutate the historical manifest. A release digest proves integrity of the defined release payload, not the legality or quality of its contents.
+A release build/manifest status is `building`, `validated`, `approved`, `published` or `failed`. A published release is immutable. Corrections produce a new release. Withdrawal is a separate, attributable lifecycle event and registry/read-model state; it MUST NOT mutate the published release manifest. Withdrawal blocks future distribution/use according to policy. A release digest proves integrity of the defined release payload, not the legality or quality of its contents.
 
 ## 9. Governance, rights and permitted use
 
