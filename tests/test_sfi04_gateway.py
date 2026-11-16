@@ -89,7 +89,7 @@ class GatewayTests(unittest.TestCase):
 
     def test_unknown_connection_is_rejected(self):
         with self.assertRaisesRegex(IngestionError, "connection-unknown"):
-            self.gateway.accept(envelope(), authenticated_connection_id="conn-missing")
+            self.gateway.accept(envelope(delivery_id="d-missing"), authenticated_connection_id="conn-missing")
 
 
 if __name__ == "__main__":
