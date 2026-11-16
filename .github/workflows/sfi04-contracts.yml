@@ -1,0 +1,34 @@
+name: SFI-04 connector contract conformance
+
+on:
+  push:
+    paths:
+      - "schemas/v1/sfi-04.schema.json"
+      - "fixtures/v1/sfi04/**"
+      - "scripts/validate_sfi04.py"
+      - "requirements-dev.txt"
+      - ".github/workflows/sfi04-contracts.yml"
+  pull_request:
+    paths:
+      - "schemas/v1/sfi-04.schema.json"
+      - "fixtures/v1/sfi04/**"
+      - "scripts/validate_sfi04.py"
+      - "requirements-dev.txt"
+      - ".github/workflows/sfi04-contracts.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-sfi04:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install schema validator
+        run: python -m pip install -r requirements-dev.txt
+      - name: Validate connector contracts and fixtures
+        run: python scripts/validate_sfi04.py
