@@ -129,10 +129,13 @@ class IngestionGateway:
                 f"{src['objectType']}:{src['objectId']}:{src['objectVersion']}"
                 if src.get("objectVersion") else
                 f"{src['objectType']}:{src['objectId']}:{declared}")
-            existing = db.execute("SELECT delivery_id,status FROM deliveries "
+            existing = db.execute("SELECT delivery_id,status,payload_digest FROM deliveries "
                                    "WHERE connection_id=? AND idempotency_key=?",
                                    (authenticated_connection_id, idem)).fetchone()
             if existing:
+                if existing["payload_digest"] != declared:
+                    db.rollback()
+                    raise IngestionError("idempotency-key-payload-conflict")
                 db.commit()
                 return {"outcome": "duplicate", "deliveryId": existing["delivery_id"],
                         "status": existing["status"], "idempotencyKey": idem}
