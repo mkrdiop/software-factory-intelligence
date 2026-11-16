@@ -1087,7 +1087,6 @@
             "validated",
             "approved",
             "published",
-            "withdrawn",
             "failed"
           ]
         },
