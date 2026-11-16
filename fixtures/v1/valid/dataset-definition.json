@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "dataset-definition",
+  "datasetId": "payments-traceability-benchmark",
+  "definitionVersion": "1.0.0",
+  "name": "Payments traceability benchmark",
+  "description": "Synthetic evidence for intent-to-validation traceability evaluation",
+  "purpose": "Internal benchmark for SFI evaluator quality",
+  "selection": {
+    "tenantIds": [
+      "tenant-demo"
+    ],
+    "workspaceIds": [
+      "workspace-payments"
+    ],
+    "evidenceDomains": [
+      "intent",
+      "execution",
+      "validation"
+    ],
+    "evidenceTypes": [
+      "requirement.acceptance-criteria",
+      "code.pull-request",
+      "test.result"
+    ],
+    "from": "2026-01-01T00:00:00Z"
+  },
+  "transformations": [
+    {
+      "transformId": "redact-secrets",
+      "version": "2.0.0",
+      "configurationDigest": {
+        "algorithm": "sha-256",
+        "value": "1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    }
+  ],
+  "targetUses": [
+    "evaluation",
+    "benchmarking"
+  ],
+  "qualityGates": [
+    "all-items-have-provenance",
+    "no-unresolved-secret-findings"
+  ],
+  "governance": {
+    "ownerTenantId": "tenant-demo",
+    "classification": "confidential",
+    "rights": {
+      "status": "cleared",
+      "basis": "synthetic-fixture-license"
+    },
+    "permittedPurposes": [
+      "evaluation",
+      "benchmarking"
+    ],
+    "sharingScope": "tenant-only",
+    "retention": {
+      "policyId": "tenant-default-365d"
+    }
+  }
+}
