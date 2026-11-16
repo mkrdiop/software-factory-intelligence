@@ -87,7 +87,11 @@
         "idempotency",
         "payloadLimits",
         "mappingProfile",
-        "knownGaps"
+        "knownGaps",
+        "supportedObjectTypes",
+        "webhookVerification",
+        "cursorStrategy",
+        "retentionPolicyRef"
       ],
       "properties": {
         "contractVersion": {
@@ -258,6 +262,14 @@
         },
         "retentionPolicyRef": {
           "$ref": "#/$defs/nonEmpty"
+        },
+        "supportedObjectTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
         }
       }
     },
