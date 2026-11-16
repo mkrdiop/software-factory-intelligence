@@ -1,0 +1,41 @@
+{
+  "envelopeVersion": "1.0.0",
+  "recordType": "delivery-envelope",
+  "deliveryId": "del-invalid",
+  "connectionId": "conn-1",
+  "workspaceId": "workspace-1",
+  "source": {
+    "system": "github",
+    "instanceId": "gh-1",
+    "objectType": "issue",
+    "objectId": "1"
+  },
+  "delivery": {
+    "mode": "webhook",
+    "receivedAt": "2026-11-16T08:30:00Z",
+    "attempt": 1
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "sizeBytes": 1,
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "inline": {
+      "x": 1
+    }
+  },
+  "authentication": {
+    "method": "hmac-signature",
+    "verified": true,
+    "verifiedAt": "2026-11-16T08:30:00Z"
+  },
+  "connector": {
+    "connectorId": "gh",
+    "connectorVersion": "1.0.0",
+    "profileId": "github-core",
+    "profileVersion": "1.0.0",
+    "mappingVersion": "1.0.0"
+  }
+}
