@@ -12,6 +12,10 @@ Software Factory Intelligence (SFI) is an independent engineering project buildi
 
 - **SFI-01 — Product Charter and Scope Baseline:** [Notion document](https://app.notion.com/p/41af741d6511810bb463efce5c2bcfa0?pvs=204) · [Markdown source](docs/product/SFI-01-product-charter-and-scope-baseline.md) · [Linear issue](https://linear.app/getpsi/issue/SFI-1/sfi-01-product-charter-and-scope-baseline)
 
+## Architecture baseline
+
+- **SFI-02 — System Architecture and Enterprise Factory Integration Boundaries:** [Notion specification](https://app.notion.com/p/41af741d65118139829de891f58ff7b8?pvs=204) · [Markdown source](docs/architecture/SFI-02-system-architecture-and-enterprise-factory-integration-boundaries.md) · [Linear issue](https://linear.app/getpsi/issue/SFI-2/sfi-02-system-architecture-and-enterprise-factory-integration)
+
 ## Mission
 
 Build an intelligence layer that captures, structures, evaluates and learns from the complete software engineering lifecycle, helping software factories design, implement, validate, document and continuously improve enterprise software.
