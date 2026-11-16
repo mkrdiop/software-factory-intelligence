@@ -49,5 +49,14 @@
   "knownGaps": [
     "CI log capture is not enabled in the initial profile."
   ],
-  "retentionPolicyRef": "retention-standard"
+  "retentionPolicyRef": "retention-standard",
+  "supportedObjectTypes": [
+    "issue",
+    "pull_request",
+    "commit",
+    "review",
+    "check_run",
+    "workflow_run",
+    "release"
+  ]
 }
