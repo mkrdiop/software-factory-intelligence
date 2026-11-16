@@ -57,6 +57,16 @@ class GatewayTests(unittest.TestCase):
         self.assertEqual(result["deliveryId"], "d-1")
         self.assertEqual(self.gateway.get_checkpoint("conn-a", "repo-1"), "c-1")
 
+    def test_same_idempotency_key_with_different_payload_is_rejected(self):
+        self.gateway.accept(envelope(), authenticated_connection_id="conn-a")
+        changed = envelope(delivery_id="d-conflict")
+        changed["payload"]["inline"]["action"] = "closed"
+        raw = json.dumps(changed["payload"]["inline"], sort_keys=True, separators=(",", ":")).encode()
+        changed["payload"]["digest"]["value"] = hashlib.sha256(raw).hexdigest()
+        changed["payload"]["sizeBytes"] = len(raw)
+        with self.assertRaisesRegex(IngestionError, "idempotency-key-payload-conflict"):
+            self.gateway.accept(changed, authenticated_connection_id="conn-a")
+
     def test_tenant_claim_cannot_override_connection_authority(self):
         with self.assertRaisesRegex(IngestionError, "binding-mismatch"):
             self.gateway.accept(envelope(tenant="tenant-victim"), authenticated_connection_id="conn-a")
