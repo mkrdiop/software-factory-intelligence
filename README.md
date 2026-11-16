@@ -16,6 +16,10 @@ Software Factory Intelligence (SFI) is an independent engineering project buildi
 
 - **SFI-02 — System Architecture and Enterprise Factory Integration Boundaries:** [Notion specification](https://app.notion.com/p/41af741d65118139829de891f58ff7b8?pvs=204) · [Markdown source](docs/architecture/SFI-02-system-architecture-and-enterprise-factory-integration-boundaries.md) · [Linear issue](https://linear.app/getpsi/issue/SFI-2/sfi-02-system-architecture-and-enterprise-factory-integration)
 
+## Canonical data model
+
+- **SFI-03 — Canonical Engineering Evidence and Dataset Model:** [Specification](docs/data-model/SFI-03-canonical-engineering-evidence-and-dataset-model.md) · [Draft 2020-12 schema](schemas/v1/sfi-03.schema.json) · [Conformance fixtures](fixtures/v1/) · [Validator](scripts/validate_sfi03.py) · [Linear issue](https://linear.app/getpsi/issue/SFI-3/sfi-03-canonical-engineering-evidence-and-dataset-model)
+
 ## Mission
 
 Build an intelligence layer that captures, structures, evaluates and learns from the complete software engineering lifecycle, helping software factories design, implement, validate, document and continuously improve enterprise software.
