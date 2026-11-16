@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "evidence-relationship",
+  "relationshipId": "8f1c4d0a-6e7b-4c8b-9a10-123456789001",
+  "tenantId": "tenant-demo",
+  "workspaceId": "workspace-payments",
+  "subject": {
+    "kind": "evidence",
+    "id": "7f1c4d0a-6e7b-4c8b-9a10-123456789001"
+  },
+  "predicate": "implements",
+  "target": {
+    "kind": "evidence",
+    "id": "7f1c4d0a-6e7b-4c8b-9a10-123456789003"
+  },
+  "status": "asserted",
+  "assertion": {
+    "method": "source-native",
+    "producer": "github-connector",
+    "confidence": 0.99,
+    "confidenceMethod": "explicit-pull-request-closes-issue"
+  },
+  "evidenceBasis": [
+    "7f1c4d0a-6e7b-4c8b-9a10-123456789004"
+  ],
+  "assertedAt": "2026-11-15T14:00:00Z"
+}
