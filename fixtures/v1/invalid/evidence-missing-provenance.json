@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordType": "engineering-evidence",
+  "evidenceId": "7f1c4d0a-6e7b-4c8b-9a10-123456789011",
+  "tenantId": "tenant-demo",
+  "workspaceId": "workspace-payments",
+  "evidenceDomain": "intent",
+  "evidenceType": "requirement",
+  "captureMode": "document",
+  "source": {
+    "system": "linear",
+    "instanceId": "linear-cloud-demo",
+    "objectType": "issue",
+    "objectId": "PAY-42"
+  },
+  "temporal": {
+    "observedAt": "2026-11-15T10:01:00Z",
+    "ingestedAt": "2026-11-15T10:01:03Z"
+  },
+  "payload": {
+    "mediaType": "application/json",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "archiveRef": "sfi-archive://tenant-demo/objects/abc123"
+  },
+  "content": {
+    "title": "Example"
+  },
+  "governance": {
+    "ownerTenantId": "tenant-demo",
+    "classification": "confidential",
+    "rights": {
+      "status": "unknown",
+      "basis": "not-yet-assessed"
+    },
+    "permittedPurposes": [
+      "engineering-operations"
+    ],
+    "sharingScope": "tenant-only",
+    "retention": {
+      "policyId": "tenant-default-365d"
+    }
+  },
+  "idempotencyKey": "missing-provenance"
+}
